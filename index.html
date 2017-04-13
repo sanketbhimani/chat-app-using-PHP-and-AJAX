@@ -1,0 +1,82 @@
+<html>
+<head>
+<style>
+	.chat_win
+	{
+		width:auto;  
+		 clear:both; 
+	}
+	.msg_box
+	{
+		width:auto; background-color:red;  height:100px; 
+		 clear:both; 
+	}
+</style>
+</head>
+<body>
+
+<div id="chatwindow"  class="chat_win"></div>
+  <br><br>
+  <div id="msgbox" class="msg_box">
+  <form id="qwe" onsubmit="return abcd()">
+<textarea name="msg" placeholder="massage......" id="q"></textarea>
+<input type="submit" value="send" >
+</form>
+</div>
+<script type="text/javascript">
+
+var ajaxRequest;
+ajaxRequest = new XMLHttpRequest();
+
+function asdf(){
+
+var chatwindow = document.getElementById('chatwindow');
+ajaxRequest.open("GET","reciver.php?p=p2",false);
+ajaxRequest.send(null);
+//alert( ajaxRequest.responseText );
+chatwindow.innerHTML += ajaxRequest.responseText   ;
+var a = ajaxRequest.responseText;
+var b = "";
+//alert(a);
+if(a === b){
+}
+else
+{
+window.scrollTo(0,document.body.scrollHeight);
+}
+
+}
+window.setInterval(asdf,300);
+function abcd()
+{
+var chatwindow = document.getElementById('chatwindow');
+	var x = document.getElementById('qwe');
+	
+	
+	ajaxRequest.open("POST","send2.php?msg="+x.elements[0].value,false);
+	ajaxRequest.send(null);
+	//chatwindow.innerHTML += "<br><div style=\"padding-top:10px; padding-left:10px; padding-right:10px; padding-bottom:10px;  float: right; width:200px; background-color:red;\">"+x.elements[0].value+"</div><br><br>" ;
+	//alert(chatwindow.innerHTML);
+	window.scrollTo(0,document.body.scrollHeight);
+	x.reset();
+	return false;
+	
+	
+}
+
+var d = document.getElementById('q');
+d.onkeyup = function(e)
+{
+
+var evt = window.event || e, key = evt.which || evt.keycode;
+
+if(key===13){
+abcd();
+}
+}
+
+
+
+</script>
+</body>
+</html>
